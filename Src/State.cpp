@@ -31,7 +31,7 @@ void IdleOn::PrintState()
 
 void IdleOn::SetLED()
 {
-	//LED::SetColor(RED);
+	//LED::setColor(RED);
 }
 
 
@@ -60,7 +60,7 @@ void IdleOff::PrintState()
 
 void IdleOff::SetLED()
 {
-	//LED::SetColor(RED);
+	//LED::setColor(BLACK);
 }
 
 
@@ -113,7 +113,7 @@ void PresetMode::setPresetsPtr(PresetsHandle* ptr)
 
 void PresetMode::SetLED()
 {
-	//LED::SetColor(RED);
+	//LED::setColor(BLUE);
 }
 
 
@@ -166,5 +166,5 @@ void EditPreset::setPresetsPtr(PresetsHandle* ptr)
 
 void EditPreset::SetLED()
 {
-	//LED::SetColor(RED);
+	LED::SetColor(0x00FF00FF);
 }
