@@ -47,9 +47,10 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
-Button MainButton(FTSW_IN_GPIO_Port, FTSW_IN_Pin);  //Button constructor with Port and Pin for type Pin member
 Menu Menu;
+Button MainButton(FTSW_IN_GPIO_Port, FTSW_IN_Pin, &Menu);  	//Button constructor with Port and Pin for type Pin member;
+															//&Menu for performing Menu.__Click() inside Button
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

@@ -8,9 +8,9 @@
 #include "Button.h"
 #include "Pin.h"
 
-	Button::Button(GPIO_TypeDef* GPIO_Port, uint16_t Num) : ButtonPin(GPIO_Port, Num)
+	Button::Button(GPIO_TypeDef* GPIO_Port, uint16_t Num, Menu* M_pointer) : ButtonPin(GPIO_Port, Num)
 	{
-
+		Menu_ptr = M_pointer;
 	}
 
 	uint16_t Button::GetPinNum() const
@@ -64,26 +64,34 @@
 				  HAL_TIM_Base_Stop_IT(this->Timer_ptr);
 				  this->SetClickState(DOUBLE_CLICK);
 				  //perform DoubleClick
+				  Menu_ptr->DoubleClick();
+				  /*
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1000-200);
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000); //green
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000); //red
-
+					*/
 					this->SetClickState(handled);
 			  }
 			  else if(this->GetClickState() == LONG_CLICK)
 			  {
 				  //perform LongClick
+				  Menu_ptr->LongClick();
+				  /*
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1000);
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000-200); //green
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000); //red
+					*/
 					this->SetClickState(handled);
 			  }
 			  else if(this->GetClickState() == SINGLE_CLICK)
 			  {
 				  //perform SingleClick
+				  Menu_ptr->SingleClick();
+				  /*
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1000);
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000); //green
 					__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000-200); //red
+					*/
 					this->SetClickState(handled);
 			  }
 			  else if(this->GetClickState() == handled && this->GetDebouncedState() == Confirmed_LOW)

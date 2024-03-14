@@ -11,6 +11,7 @@
 #include "tim.h"
 #include "gpio.h"
 #include "Pin.h"
+#include "Menu.h"
 //defining macros (in ms) for time constants used to handle button behaviour
 #define DEBOUNCE_TIME 20
 #define LONG_CLICK_TIME 1000
@@ -44,8 +45,8 @@ private:
 
 
 public:
-	Button(GPIO_TypeDef*, uint16_t);
-
+	Button(GPIO_TypeDef*, uint16_t, Menu*);
+	Menu* Menu_ptr;
 	bool isDebouncing = false;
 	uint32_t Debounce_timer; 				//counting in ms
 	uint32_t Click_timer;

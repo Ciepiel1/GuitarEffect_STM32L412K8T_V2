@@ -8,6 +8,7 @@
 
 #include "LED.h"
 
+
 void LED::SetColor(uint32_t color)
 {
 	uint8_t red = color;
@@ -17,4 +18,12 @@ void LED::SetColor(uint32_t color)
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1000-blue);
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000-green); //green
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000-red); //red
+}
+
+void LED::init(TIM_HandleTypeDef* tim)
+{
+	PWM_timer = tim;
+	HAL_TIM_PWM_Start(PWM_timer, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(PWM_timer, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(PWM_timer, TIM_CHANNEL_3);
 }
