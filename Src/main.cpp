@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "Button.h"
 #include "Menu.h"
+#include "flash_store_data.h"
 //#include "LED.h"
 /* USER CODE END Includes */
 
@@ -37,6 +38,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define FLASH_ADDRESS_STRING 0x08010000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,7 +63,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t char_random[] = {5,4,3,2,1};
+uint8_t char_read[sizeof(char_random)];
 /* USER CODE END 0 */
 
 /**
@@ -97,7 +100,9 @@ int main(void)
   MX_TIM6_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  store_flash_memory(FLASH_ADDRESS_STRING, (uint8_t *)char_random, sizeof(char_random));
+HAL_Delay(100);
+read_flash_memory(FLASH_ADDRESS_STRING, (uint8_t *)char_read, sizeof(char_random));
   //HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 

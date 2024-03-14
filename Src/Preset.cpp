@@ -60,7 +60,10 @@ PresetsHandle::PresetsHandle() : PresetList({new Preset, new Preset, new Preset,
 
 PresetsHandle::~PresetsHandle()
 {
-
+	for(auto p:PresetList)
+	{
+		delete p;
+	}
 }
 
 PresetsHandle& PresetsHandle::getInstance()
